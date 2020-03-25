@@ -20,7 +20,7 @@ class Dog
     if search_result
       return Dog.new_from_db(search_result)
     else
-      new_dog = Dog.new(name, breed)
+      new_dog = Dog.new(name: name, breed: breed)
       new_dog.save
       return new_dog
     end
