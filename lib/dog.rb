@@ -32,7 +32,6 @@ class Dog
   def self.find_by_id(id)
     sql = "SELECT * FROM dogs WHERE id = ? LIMIT 1;"
     found_dog = Dog.new_from_db(DB[:conn].execute(sql, id).first)
-    print found_dog.id
     return found_dog
   end
   
@@ -55,7 +54,7 @@ class Dog
   
   def update()
     if @id != nil
-      sql = "ALTER TABLE dogs SET name = ?, breed = ? WHERE id = ?;"
+      sql = "ALTER TABLE dogs SET COLUMN name = ?, breed = ? WHERE id = ?;"
       DB[:conn].execute(sql, @name, @breed, @id);
     else
       self.save()
