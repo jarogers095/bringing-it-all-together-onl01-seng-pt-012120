@@ -9,9 +9,7 @@ class Dog
   end
   
   def self.create(attributes)
-    puts attributes
     new_dog = Dog.new(attributes)
-    puts new_dog
     new_dog.save()
     return new_dog
   end
