@@ -11,6 +11,7 @@ class Dog
   def self.create(attributes)
     puts attributes
     new_dog = Dog.new(attributes)
+    puts new_dog
     new_dog.save()
     return new_dog
   end
@@ -38,7 +39,7 @@ class Dog
   
   def self.find_by_name(name)
     sql = "SELECT * FROM dogs WHERE name = ? LIMIT 1;"
-    found_dog = Dog.new_from_db(DB[:conn].execute(sql, name))
+    found_dog = Dog.new_from_db(DB[:conn].execute(sql, name).first)
     return found_dog
   end
   
