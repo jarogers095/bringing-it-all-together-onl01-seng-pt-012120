@@ -9,7 +9,10 @@ class Dog
   end
   
   def self.create(attributes)
-    new_dog = Dog.new()
+    new_dog = Dog.new(attributes)
+    new_dog.save()
+    return new_dog
+  end
   
   def self.create_table()
     sql = "CREATE TABLE IF NOT EXISTS dogs (id INTEGER PRIMARY KEY, name TEXT, breed TEXT);"
