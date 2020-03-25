@@ -54,7 +54,7 @@ class Dog
   
   def update()
     if @id != nil
-      sql = "ALTER TABLE dogs SET VALUES (name = ?, breed = ?) WHERE id = ?;"
+      sql = "UPDATE dogs SET (name = ?, breed = ?) WHERE id = ?;"
       DB[:conn].execute(sql, @name, @breed, @id);
     else
       self.save()
