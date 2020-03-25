@@ -31,10 +31,8 @@ class Dog
   
   def self.find_by_id(id)
     sql = "SELECT * FROM dogs WHERE id = ? LIMIT 1;"
-    found_dog = Dog.new_from_db(DB[:conn].execute(sql, id))
-    #puts found_dog.id
-    puts found_dog.name
-    puts found_dog.breed
+    found_dog = DB[:conn].execute(sql, id)
+    puts found_dog
     return found_dog
   end
   
