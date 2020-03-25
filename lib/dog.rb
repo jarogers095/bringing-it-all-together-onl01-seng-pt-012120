@@ -14,6 +14,18 @@ class Dog
     return new_dog
   end
   
+  def self.find_or_create_by(name:, breed:)
+    sql = "SELECT * FROM dogs WHERE name = ?, breed = ? LIMIT 1;"
+    search_result = DB[:conn].execute(sql, name, breed).first
+    if search_result
+      return Dog.new_from_db(search_result)
+    else
+      new_dog = Dog.new(name, breed)
+      new_dog.save
+      return new_dog
+    end
+  end
+  
   def self.create_table()
     sql = "CREATE TABLE IF NOT EXISTS dogs (id INTEGER PRIMARY KEY, name TEXT, breed TEXT);"
     DB[:conn].execute(sql);
