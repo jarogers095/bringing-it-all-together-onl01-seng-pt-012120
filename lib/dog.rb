@@ -33,7 +33,7 @@ class Dog
     if @id == nil
       sql = "INSERT INTO dogs (name, breed) VALUES (?,?);"
       DB[:conn].execute(sql, @name, @breed);
-      @id = DB[:conn].execute("SELECT last_insert_rowid() FROM dogs;")
+      @id = DB[:conn].execute("SELECT last_insert_rowid() FROM dogs;")[0][0]
       return self
     else
       self.update()
