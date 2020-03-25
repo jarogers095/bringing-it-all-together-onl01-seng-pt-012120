@@ -24,10 +24,19 @@ class Dog
   end
   
   def self.find_by_name(name)
-    sql = "CREATE TABLE IF NOT EXISTS dogs (id INTEGER PRIMARY KEY, name TEXT, breed TEXT);"
-    DB[:conn].execute(sql);
+    sql = "SELECT * FROM dogs WHERE name = ? LIMIT 1;"
+    found_dog = Dog.new_from_db(DB[:conn].execute(sql, name))
+    return found_dog
   end
   
+  def save()
+    if @id == nil
+      
+  end
+  
+  def update()
+    
+  end
   
   
 end
