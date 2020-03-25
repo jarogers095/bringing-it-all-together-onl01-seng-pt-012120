@@ -15,7 +15,7 @@ class Dog
   end
   
   def self.find_or_create_by(name:, breed:)
-    sql = "SELECT * FROM dogs WHERE name = ?, breed = ? LIMIT 1;"
+    sql = "SELECT * FROM dogs WHERE name = ? AND breed = ? LIMIT 1;"
     search_result = DB[:conn].execute(sql, name, breed).first
     if search_result
       return Dog.new_from_db(search_result)
