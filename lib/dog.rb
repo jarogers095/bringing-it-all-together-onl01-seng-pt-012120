@@ -41,13 +41,10 @@ class Dog
   
   def update()
     if @id != nil
-      sql = "ALTER ;"
-      DB[:conn].execute(sql, @name, @breed);
-      @id = DB[:conn].execute("SELECT last_insert_rowid() FROM dogs;")
+      sql = "ALTER TABLE dogs SET name = ?, breed = ? WHERE id = ?;"
+      DB[:conn].execute(sql, @name, @breed, @id);
     else
-      self.update()
+      self.save()
     end
   end
-  
-  
 end
